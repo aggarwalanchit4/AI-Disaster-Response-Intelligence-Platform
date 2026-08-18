@@ -3,8 +3,13 @@ from database import get_connection, initialize_database, seed_database
 
 app = Flask(__name__)
 
+# Initialize and seed database on application startup (works for both Gunicorn WSGI & direct CLI)
+initialize_database()
+seed_database()
+
 
 @app.route("/")
+
 def home():
     return render_template("index.html")
 
@@ -458,6 +463,5 @@ def get_stats():
 
 
 if __name__ == "__main__":
-    initialize_database()
-    seed_database()
     app.run(debug=True)
+
