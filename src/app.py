@@ -1,14 +1,24 @@
 from flask import Flask, jsonify, render_template, request
-from database import get_connection, initialize_database, seed_database
+from database import (
+    ensure_database_initialized,
+    get_connection,
+    initialize_database,
+    seed_database
+)
 
 app = Flask(__name__)
 
 # Initialize and seed database on application startup (works for both Gunicorn WSGI & direct CLI)
-initialize_database()
-seed_database()
+ensure_database_initialized()
+
+
+@app.before_request
+def setup_database_before_request():
+    ensure_database_initialized()
 
 
 @app.route("/")
+
 
 def home():
     return render_template("index.html")
