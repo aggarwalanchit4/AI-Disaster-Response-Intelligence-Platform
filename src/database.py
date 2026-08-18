@@ -7,9 +7,11 @@ DATABASE = os.path.join(BASE_DIR, "disaster_response.db")
 
 
 def get_connection():
-    connection = sqlite3.connect(DATABASE)
+    connection = sqlite3.connect(DATABASE, timeout=30.0)
     connection.row_factory = sqlite3.Row
+    connection.execute("PRAGMA busy_timeout = 30000")
     return connection
+
 
 
 def initialize_database():
