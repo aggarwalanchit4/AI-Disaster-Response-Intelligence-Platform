@@ -12,12 +12,8 @@ app = Flask(__name__)
 ensure_database_initialized()
 
 
-@app.before_request
-def setup_database_before_request():
-    ensure_database_initialized()
-
-
 @app.route("/")
+
 
 
 def home():
