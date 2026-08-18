@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Disaster Response Intelligence Platform</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div>
+            <h1>AI Disaster Response</h1>
+            <p>Intelligence Command Center</p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+    </header>
+
+
+    <main class="dashboard">
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>Active Incidents</span>
+                <strong id="incidentCount">0</strong>
+            </div>
+
+            <div class="stat-card danger">
+                <span>Critical Victims</span>
+                <strong id="criticalCount">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Rescue Teams</span>
+                <strong id="teamCount">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Volunteers</span>
+                <strong id="volunteerCount">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- Main Content -->
+
+        <section class="main-grid">
+
+            <!-- Map -->
+
+            <div class="panel map-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Real-Time Disaster Map</h2>
+                        <p>Disaster zones, victims and response resources</p>
+                    </div>
+                </div>
+
+                <div id="map"></div>
+
+            </div>
+
+
+            <!-- Incident Panel -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Priority Incidents</h2>
+                        <p>AI-assisted victim prioritization</p>
+                    </div>
+                </div>
+
+                <div id="incidentList" class="incident-list">
+
+                    <div class="empty-state">
+                        No active incidents
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI Intelligence -->
+
+        <section class="panel ai-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>🤖 AI Disaster Intelligence</h2>
+                    <p>Automated situation synthesis</p>
+                </div>
+
+                <button id="generateSummary">
+                    Generate Summary
+                </button>
+
+            </div>
+
+            <div id="aiSummary" class="ai-summary">
+                AI-generated disaster intelligence will appear here.
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h2>🚨 Citizen SOS</h2>
+                    <p>Submit an emergency report to the command center</p>
+                </div>
+            </div>
+
+            <form id="sosForm" class="sos-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sosName">Name / Identifier</label>
+                        <input
+                            type="text"
+                            id="sosName"
+                            placeholder="Example: Citizen SOS #1045"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sosLocation">Location</label>
+                        <input
+                            type="text"
+                            id="sosLocation"
+                            placeholder="Example: Greater Noida"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sosMessage">Emergency Description</label>
+                    <textarea
+                        id="sosMessage"
+                        rows="4"
+                        placeholder="Describe the emergency..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit">🚨 Submit SOS</button>
+                <div id="sosStatus"></div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h2>📱 Incoming SOS Reports</h2>
+                    <p>Reports received from citizens</p>
+                </div>
+            </div>
+
+            <div id="sosList">
+                <div class="empty-state">
+                    No SOS reports received.
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h2>🚑 Response Resources</h2>
+                    <p>Manage emergency response teams and resources</p>
+                </div>
+            </div>
+
+            <div id="resourceList" class="resource-list">
+                <div class="empty-state">
+                    Loading resources...
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        AI Disaster Response Intelligence Platform
+        <span>•</span>
+        Automate India Hackathon
+    </footer>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
